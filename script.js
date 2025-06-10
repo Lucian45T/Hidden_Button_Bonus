@@ -1,37 +1,37 @@
-let oneGenerateInputNumberButtons = 0;
+let GenerateButtonsSingleTime = 0;
 let saved = 0;
 let verify = 0;
-let chooseButtons = 0;
+let WinnerButton = 0;
 
 function generateButtons() {
     let number = document.getElementById('numberButtons').value
-        if (oneGenerateInputNumberButtons == 0) {
+        if (GenerateButtonsSingleTime == 0) {
             for (let i = 1; i <= number; ++i) {
                 ++saved;
                 document.getElementById("generatedButtons").innerHTML += `
-                <br>
-                <div class="container text-center">
-                    <div class="card">
-                        <div class="card-body">
-                            <button class="btn btn-success" id="${saved}"
-                            onclick="pushEveryGeneratedButton('${saved}')">Push</button>
+                    <br>
+                    <div class="container text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <button class="btn btn-success" id="${saved}"
+                                    onclick="pushButton('${saved}')">Push</button>
+                            </div>
                         </div>
-                    </div>
-                </div> `;     
+                    </div> `;     
             }
-            ++oneGenerateInputNumberButtons;
+            ++GenerateButtonsSingleTime;
         }
-        const chooseButton = Math.floor(Math.random()*(saved)) + 1; 
-        chooseButtons = chooseButton;  
+        WinnerButton = Math.floor(Math.random() * (saved)) + 1; 
+         
 }
 
-function pushEveryGeneratedButton(elementId) {
-    if (chooseButtons == elementId && verify == 0) {
-        document.getElementById(elementId).textContent ="Winner"; 
+function pushButton(elementId) {
+    if (WinnerButton == elementId && verify == 0) {
+        document.getElementById(elementId).textContent = "Winner"; 
         ++verify;
     }
-    if (chooseButtons != elementId) {
-    document.getElementById(elementId).textContent ="Loser"; 
+    if (WinnerButton != elementId) {
+        document.getElementById(elementId).textContent = "Loser"; 
     }
 }
    
